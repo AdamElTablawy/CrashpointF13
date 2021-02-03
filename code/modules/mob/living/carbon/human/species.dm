@@ -1171,12 +1171,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/obj/item/I in H.held_items)
 			if(I.item_flags & SLOWS_WHILE_IN_HAND)
 				. += I.slowdown
-		var/health_deficiency = (100 - H.health + H.staminaloss)
-		if(health_deficiency >= 40 && !H.has_trait(TRAIT_IGNOREDAMAGESLOWDOWN))
-			if(flight)
-				. += (health_deficiency / 75)
-			else
-				. += (health_deficiency / 40)
+		if(!HAS_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN))
+			var/health_deficiency = max(H.maxHealth - H.health, H.staminaloss)
+			if(health_deficiency >= H.maxHealth * 0.4)
+				if(flight)
+					. += (health_deficiency / 75)
+				else
+					. += (health_deficiency / 25)
 		if(CONFIG_GET(flag/disable_human_mood))
 			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
 			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
