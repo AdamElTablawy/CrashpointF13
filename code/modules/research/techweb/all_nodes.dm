@@ -131,12 +131,28 @@
 	display_name = "Futuristic Parts"
 	description = "The pinnacle of machine parts."
 	prereq_ids = list("adv_power", "high_efficiency")
-	design_ids = list("femto_mani", "triphasic_scanning", "quadratic_capacitor","bluespace_matter_bin")
+	design_ids = list("femto_mani", "triphasic_scanning", "quadratic_capacitor","bluespace_matter_bin","bluespace_cell")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
 /////////////////////////Bluespace tech/////////////////////////
+/datum/techweb_node/bluespace_basic //Bluespace-memery
+	id = "bluespace_basic"
+	display_name = "Basic Portal Theory"
+	description = "Basic studies into mysterious alternate dimensions."
+	prereq_ids = list("base")
+	design_ids = list("beacon", "telesci_gps", "bluespace_crystal")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
 
+/datum/techweb_node/micro_bluespace
+	id = "micro_bluespace"
+	display_name = "Miniaturized Portal Research"
+	description = "Extreme reduction in space required for dimensional manipulation technology, leading to...the ability to remotely replace parts in machines. Eh, that's pretty cool."
+	prereq_ids = list("bluespace_basic", "future_parts")
+	design_ids = list("bs_rped")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	export_price = 10000
 /////////////////////////plasma tech/////////////////////////
 /datum/techweb_node/basic_plasma
 	id = "basic_plasma"
@@ -185,10 +201,19 @@
 
 /datum/techweb_node/mmi
 	id = "mmi"
-	display_name = "Man Machine Interface"
+	display_name = "Robobrain Interface"
 	description = "A slightly Frankensteinian device that allows human brains to interface natively with software APIs."
 	prereq_ids = list("neural_programming")
 	design_ids = list("mmi")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/techweb_node/posibrain
+	id = "posibrain"
+	display_name = "Positronic Brain"
+	description = "Applied usage of neural technology allowing for autonomous AI units based on special metallic cubes with conductive and processing circuits."
+	prereq_ids = list("mmi")
+	design_ids = list("mmi_posi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -426,7 +451,7 @@
 	display_name = "Advanced Mining Technology"
 	description = "Efficiency Level 127"	//dumb mc references
 	prereq_ids = list("basic_mining", "adv_engi", "adv_power", "adv_plasma")
-	design_ids = list("drill_diamond", "jackhammer", "hypermod")
+	design_ids = list("drill_diamond", "jackhammer", "hypermod", "plasmacutter_adv", "borg_upgrade_plasmacutter")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -509,7 +534,7 @@
 	display_name = "Beam Weaponry"
 	description = "Various basic beam weapons"
 	prereq_ids = list("adv_weaponry")
-	design_ids = list("temp_gun")
+	design_ids = list("temp_gun","laserrifle","laserpistol","ec","ecp")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -532,16 +557,17 @@
 	design_ids = list("large_Grenade", "pyro_Grenade", "adv_Grenade")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
-/*
+
 /datum/techweb_node/ballistic_weapons
 	id = "ballistic_weapons"
 	display_name = "Ballistic Weaponry"
 	description = "This isn't research. This is reverse-engineering!"
 	prereq_ids = list("weaponry")
-	design_ids = list("armag", "shotgunbuck", "shotgunslug", "shotgunrubber", "shotgunbean" , "smgmag", "smg", "shotgun", "ar", "bulletarmor", "bullethelmet")
+	design_ids = list("shotgunbuck", "shotgunslug", "shotgunrubber", "shotgunbean", "bulletarmor", "bullethelmet")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+/*
 /datum/techweb_node/tech_shell
 	id = "tech_shell"
 	display_name = "Technological Shells"
@@ -589,7 +615,7 @@
 	"odysseus_main", "odysseus_peri")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
-/*
+
 /datum/techweb_node/gygax
 	id = "mech_gygax"
 	display_name = "EXOSUIT: Gygax"
@@ -608,6 +634,8 @@
 	"durand_peri", "durand_targ", "durand_armor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+/*
 /datum/techweb_node/phazon
 	id = "mecha_phazon"
 	display_name = "EXOSUIT: Phazon"
@@ -685,6 +713,7 @@
 	design_ids = list("mech_tesla")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+*/
 /datum/techweb_node/mech_laser
 	id = "mech_laser"
 	display_name = "Exosuit Weapon (CH-PS \"Immolator\" Laser)"
@@ -701,6 +730,7 @@
 	design_ids = list("mech_laser_heavy")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+/*
 /datum/techweb_node/mech_grenade_launcher
 	id = "mech_grenade_launcher"
 	display_name = "Exosuit Weapon (SGL-6 Grenade Launcher)"
@@ -783,7 +813,7 @@
 	display_name = "Advanced Engineering"
 	description = "Very advanced engineering tools"
 	prereq_ids = list("adv_engi")
-	design_ids = list("alien_wrench", "alien_wirecutters", "alien_screwdriver", "alien_crowbar", "alien_welder", "alien_multitool")
+	design_ids = list("alien_wrench", "alien_wirecutters", "alien_screwdriver", "alien_crowbar", "alien_welder", "alien_multitool", "circuitboardthing", "combatrcd")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 20000
 
@@ -791,7 +821,7 @@
 	id = "syndicate_basic"
 	display_name = "Very Dangerous Technology"
 	description = "Dangerous research used to create dangerous objects."
-	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons")
+	prereq_ids = list("adv_engi", "adv_weaponry", "explosive_weapons","borg_syndicate_module")
 	design_ids = list("suppressor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 	export_price = 5000
